@@ -12,6 +12,8 @@ class Product < ApplicationRecord
 
   # Validate the image url ends with .gif, .jpg, or .png.
   # Use 'format' option to match regex.
+  # The 'Z' in the regex matches the end of the string before '\n' and
+  # the 'i' means the regex pattern match is case insensitive.
   validates :image_url, allow_blank: true, format: {
     with: %r{\.(gif|jpg|png)\Z}i,
     message: 'must be a URL for GIF, JPG or PNG image.'
