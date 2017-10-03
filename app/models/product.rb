@@ -7,7 +7,7 @@ class Product < ApplicationRecord
   # If user enters 0.001 it would be stored as 0.00.
   validates :price, numericality: {greater_than_or_equal_to: 0.01}
 
-  # Validate a unique title. No 2 title should be the same.
+  # Validate a unique title. No 2 titles should be the same.
   validates :title, uniqueness: true
 
   # Validate the image url ends with .gif, .jpg, or .png.

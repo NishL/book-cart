@@ -1,4 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# 1) Always use spaces and not tabs.
+# 2) All the the lines for a row must have the same indentation.
+# 3) Always double check the name of your columns, a mismatch with a DB column
+#    name can cause hard to track down exceptions.
 
 one:
   title: MyString
@@ -11,3 +15,13 @@ two:
   description: MyText
   image_url: MyString
   price: 9.99
+
+# Data for unique name validation test:
+ruby:
+  title: Programming Ruby 2.4
+  description:
+    Ruby is the fastest growing and most exciting dynamic
+    language out there. If you need to get working programs
+    delivered fast, you should add Ruby to your toolbox.
+  price: 49.50
+  image_url: ruby.png

@@ -7,8 +7,10 @@ require 'test_helper'
 # We can use the model's `errors()` and `invalid?()` methods to see if it validates.
 # We can use the `any?()` method of the error list to see if an error is associated
 # with a particular attribute.
+# http://api.rubyonrails.org/classes/ActiveModel/Errors.html
 
 class ProductTest < ActiveSupport::TestCase
+  # fixtures :products # Load the products.yml fixture instead of default: Rails loading all fixtures.
   # test "the truth" do
   #   assert true
   # end
@@ -17,9 +19,9 @@ class ProductTest < ActiveSupport::TestCase
   test "product attributes must not be empty" do
     product = Product.new
     assert product.invalid?
-    assert product.errors[:title].any?
-    assert product.errors[:description].any?
-    assert product.errors[:price].any?
+    assert product.errors[:title].any?                      # In Rails console try: `product.errors.messages`.
+    assert product.errors[:description].any?                # You'll understand that the error messages are saved
+    assert product.errors[:price].any?                      # in a hash.
     assert product.errors[:image_url].any?
   end
 
@@ -29,7 +31,7 @@ class ProductTest < ActiveSupport::TestCase
                           description: "yyy",
                           image_url:   'zzz.jpg')
 
-    # It's reasinable to put the following three tests into
+    # It's reasonable to put the following three tests into
     # three separate test methods.
     product.price = -1
     assert product.invalid?
@@ -69,6 +71,23 @@ class ProductTest < ActiveSupport::TestCase
       assert new_product(name).invalid?, "#{name} shouldn't be valid"
     end
   end
-end
 
-# http://api.rubyonrails.org/classes/ActiveModel/Errors.html
+  # Test unique product name validation.
+  # For this test to work, we need to store product data in the database.
+  # To achieve this we can create a test product, save it, then create another
+  # on with the same name. OR, we can use 'fixtures'.
+  # test/fixtures/products.yml
+  # For each fixture loaded into a test, Rails defines a method with the same name
+  # as the fixture (ex. `products`). You can use this method to access preloaded model
+  # objects containing the fixture data: simply pass it the name of the row as defined
+  # in the YAML fixture file. In our case we'll call `products(:ruby)` which will return
+  # a `Product` model containg the fixture data we defined.
+  test "product is not valiid without a unique title" do
+    product = Product.new(title: products(:ruby).title, # Create a new product with the same title as one from fixture.
+                          description: "yyy",
+                          price: 1,
+                          image_url: "fred.gif")
+    assert product.invalid?
+    assert_equal ["has already been taken"], product.errors[:title]
+  end
+end
