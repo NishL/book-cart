@@ -25,6 +25,17 @@ class ProductTest < ActiveSupport::TestCase
     assert product.errors[:image_url].any?
   end
 
+  # Check validation of title length
+  test "title must be at least 10 characters" do
+    prod = Product.new(title: '123',
+                       description: 'yyy',
+                       price: 1,
+                       image_url: 'fred.png')
+    assert prod.invalid?
+    assert prod.errors[:title].any?
+    assert_equal ["isn't long enough"], prod.errors[:title]
+  end
+
   # Check validation of price works.
   test "product price must be positive" do
     product = Product.new(title:       "My book title",

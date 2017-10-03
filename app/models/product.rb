@@ -9,6 +9,7 @@ class Product < ApplicationRecord
 
   # Validate a unique title. No 2 titles should be the same.
   validates :title, uniqueness: true
+  validates :title, length: {minimum: 10, message: "isn't long enough"}
 
   # Validate the image url ends with .gif, .jpg, or .png.
   # Use 'format' option to match regex.
