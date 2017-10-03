@@ -20,3 +20,7 @@ class Product < ApplicationRecord
     message: 'must be a URL for GIF, JPG or PNG image.'
   }
 end
+
+# http://api.rubyonrails.org/classes/ActiveModel/Validations/ClassMethods.html#method-i-validates
+# http://api.rubyonrails.org/classes/ActiveModel/Validations/HelperMethods.html#method-i-validates_length_of
+# http://guides.rubyonrails.org/active_record_validations.html
