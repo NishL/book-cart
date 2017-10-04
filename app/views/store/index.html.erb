@@ -7,7 +7,7 @@
     <h3><%= product.title %></h3>
     <%= sanitize(product.description) %><!--`sanitize` allows us to safely add HTML styling-->
     <div class="price_line">
-      <span class="price"><%= product.price %></span>
+      <span class="price"><%= format("$%0.2f", product.price) %></span>
     </div>
   </div>
 <% end %>
