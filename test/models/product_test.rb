@@ -21,7 +21,7 @@ class ProductTest < ActiveSupport::TestCase
     assert product.invalid?
     assert product.errors[:title].any?                      # In Rails console try: `product.errors.messages`.
     assert product.errors[:description].any?                # You'll understand that the error messages are saved
-    assert product.errors[:price].any?                      # in a hash.
+    assert product.errors[:price].any?                      # in a hash. Make sure to try saving a product in console first.
     assert product.errors[:image_url].any?
   end
 
