@@ -1,13 +1,17 @@
 <p id="notice"><%= notice %></p>
 <h1>Your Catalog</h1>
 
-<% @products.each do |product| %>
-  <div class="entry">
-    <%= image_tag(product.image_url) %>
-    <h3><%= product.title %></h3>
-    <%= sanitize(product.description) %><!--`sanitize` allows us to safely add HTML styling-->
-    <div class="price_line">
-      <span class="price"><%= number_to_currency(product.price) %></span>
-    </div>
-  </div>
+<% cache @products do %><!--Only re-render when a new product is added-->
+  <% @products.each do |product| %>
+    <% cache product do %><!--Only re-render a product when it's modified-->
+      <div class="entry">
+        <%= image_tag(product.image_url) %>
+        <h3><%= product.title %></h3>
+        <%= sanitize(product.description) %><!--`sanitize` allows us to safely add HTML styling-->
+        <div class="price_line">
+          <span class="price"><%= number_to_currency(product.price) %></span>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 <% end %>
