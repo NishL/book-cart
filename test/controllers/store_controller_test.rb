@@ -7,7 +7,8 @@ class StoreControllerTest < ActionDispatch::IntegrationTest
     assert_select '#columns #side a', minimum: 4 # Look for element 'a' in element id 'side' contained in element 'columns', minimum of 4 such elements
     assert_select '#main .entry', 3              # Look for 3 elements with the id 'main'
     assert_select 'h3', 'Programming Ruby 2.4'   # Veify an h3 element with the title found in the fixture
-    assert_select '.price', /\$[,\d]+\.\d\d/     # Verify the price is formatted properly
+    assert_select '.price', /\$[,\d]+\.\d\d\d/   # Verify the price is formatted properly
+    assert_select '#time'                        # Verify the presence of element id 'time'
   end
 
 end

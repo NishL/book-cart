@@ -9,9 +9,11 @@
         <h3><%= product.title %></h3>
         <%= sanitize(product.description) %><!--`sanitize` allows us to safely add HTML styling-->
         <div class="price_line">
-          <span class="price"><%= number_to_currency(product.price) %></span>
+          <span class="price"><%= number_to_currency(product.price, precision: 3) %></span>
         </div>
       </div>
     <% end %>
   <% end %>
 <% end %>
+
+<!-- http://api.rubyonrails.org/classes/ActionView/Helpers/NumberHelper.html#method-i-number_to_currency-->
