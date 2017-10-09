@@ -33,3 +33,4 @@ end
 # 1) `ActiveRecord::RecordNotFound` http://api.rubyonrails.org/v5.0.5/classes/ActiveRecord/RecordNotFound.html
 # 2) Why we created this file in concerns:
 # => https://signalvnoise.com/posts/3372-put-chubby-models-on-a-diet-with-concerns
+# Read about sessions: http://guides.rubyonrails.org/security.html#sessions
