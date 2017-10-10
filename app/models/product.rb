@@ -1,4 +1,8 @@
 class Product < ApplicationRecord
+  has_many :line_items # We have lots of carts, each product may have many line items referencing it
+
+  before_destroy :ensure_not_referenced_by_any_line_item # Prevent removal of products referenced by line items
+
   # Validate data before writing to DB.
   validates :title, :description, :image_url, presence: true
 
@@ -19,8 +23,26 @@ class Product < ApplicationRecord
     with: %r{\.(gif|jpg|png)\Z}i,
     message: 'must be a URL for GIF, JPG or PNG image.'
   }
+
+  private
+
+  # Ensure that there are no line items referencing this product.
+  def ensure_not_referenced_by_any_line_item
+    unless line_items.empty?
+      errors.add(:base, 'Line Items present')
+      throw :abort
+    end
+  end
+
 end
 
-# http://api.rubyonrails.org/classes/ActiveModel/Validations/ClassMethods.html#method-i-validates
-# http://api.rubyonrails.org/classes/ActiveModel/Validations/HelperMethods.html#method-i-validates_length_of
-# http://guides.rubyonrails.org/active_record_validations.html
+# We declare that a Product has many line items and defined a 'hook' method named
+# `ensure_not_referenced_by_any_line_item()`.
+
+# A 'hook' method is a method that Rails calls automatically at a given point in an
+# object's life. In this case, the method gets called before Rails attempts to destroy
+# a row in the database. If the hook throws `abort`, the row isn't destroyed.
+
+# 1) http://api.rubyonrails.org/classes/ActiveModel/Validations/ClassMethods.html#method-i-validates
+# 2) http://api.rubyonrails.org/classes/ActiveModel/Validations/HelperMethods.html#method-i-validates_length_of
+# 3) http://guides.rubyonrails.org/active_record_validations.html
