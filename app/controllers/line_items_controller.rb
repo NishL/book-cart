@@ -1,4 +1,6 @@
 class LineItemsController < ApplicationController
+  include CurrentCart # Include current_cart from concerns and use priveate seet_cart()
+  before_action :set_cart, only: [:create] # Invoke set_cart() before calling the create() action
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
 
   # GET /line_items
@@ -24,11 +26,12 @@ class LineItemsController < ApplicationController
   # POST /line_items
   # POST /line_items.json
   def create
-    @line_item = LineItem.new(line_item_params)
+    product = Product.find(params[:product_id]) # Use params object to get `:product_id` param passed in from the request on store#index
+    @line_item = @cart.line_items.build(product: product) # Pass `product` into @cart.line_items.build. This creaes a relationship between the @cart object & the product
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to @line_item, notice: 'Line item was successfully created.' }
+        format.html { redirect_to @line_item.cart, notice: 'Line item was successfully created.' } # Add `.cart` to the method call, the line item object knows how to find the cart object
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }
