@@ -17,10 +17,15 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create line_item" do
     assert_difference('LineItem.count') do
-      post line_items_url, params: { line_item: { cart_id: @line_item.cart_id, product_id: @line_item.product_id } }
+      post line_items_url, params: { product_id: products(:ruby).id }
+
+      follow_redirect!
+
+      assert_select 'h2', 'Your Cart'
+      assert_select 'li', 'Programming Ruby 2.4'
     end
 
-    assert_redirected_to line_item_url(LineItem.last)
+    # assert_redirected_to line_item_url(LineItem.last)
   end
 
   test "should show line_item" do
