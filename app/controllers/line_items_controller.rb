@@ -27,7 +27,7 @@ class LineItemsController < ApplicationController
   # POST /line_items.json
   def create
     product = Product.find(params[:product_id]) # Use params object to get `:product_id` param passed in from the request on store#index
-    @line_item = @cart.line_items.build(product: product) # Pass `product` into @cart.line_items.build. This creaes a relationship between the @cart object & the product
+    @line_item = @cart.add_product(product) 
 
     respond_to do |format|
       if @line_item.save
