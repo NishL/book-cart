@@ -26,8 +26,8 @@ class LineItemsController < ApplicationController
   # POST /line_items
   # POST /line_items.json
   def create
-    product = Product.find(params[:product_id]) # Use params object to get `:product_id` param passed in from the request on store#index
-    @line_item = @cart.add_product(product) 
+    product = Product.find(params[:product_id]) # Use params object to get `:product_id` param passed in from the request on store#index.
+    @line_item = @cart.add_product(product)     # Create the line item for the cart by using the `add_prouct()` method, pass in the product.
 
     respond_to do |format|
       if @line_item.save
