@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: [:show, :edit, :update, :destroy]
+  before_action :set_cart, only: [:show, :edit, :update, :destroy] # NOTE: before calling the actions in the array call set_cart
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
 
   # GET /carts
   # GET /carts.json
@@ -71,4 +72,17 @@ class CartsController < ApplicationController
     def cart_params
       params.fetch(:cart, {})
     end
+
+    # Rescue feom ActiveRecord::RecordNotFound
+    def invalid_cart
+      logger.error "Attempt to access invalid cart #{params[:id]}"
+      redirect_to store_index_url, notice: 'Ivalid Cart'
+    end
 end
+
+# NOTE: The `rescu  e_from` clause intrcepts the exception raised by `Cart.find()`.
+# In the handler we do the following:
+# 1) Use the Rails logger to record the error. Every controller has a logger attribute,
+#    here we use it to record a  message at the `error` logging level.
+# 2) Rdirect to the catalog display using the `redirect_to()` method. The `:notice`
+#    parameter specifies a message to be stored in the flash as a notice.
