@@ -50,7 +50,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
   # Test to ensure a product cart can't be deleted
   test "can't delete product in cart" do
-    assert_difference('Product count', 0) do
+    assert_difference('Product.count', 0) do
       delete(product_url(:two))
     end
 
