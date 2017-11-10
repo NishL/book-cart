@@ -80,7 +80,7 @@ class CartsController < ApplicationController
     end
 end
 
-# NOTE: The `rescu  e_from` clause intrcepts the exception raised by `Cart.find()`.
+# NOTE: The `rescue_from` clause intrcepts the exception raised by `Cart.find()`.
 # In the handler we do the following:
 # 1) Use the Rails logger to record the error. Every controller has a logger attribute,
 #    here we use it to record a  message at the `error` logging level.
