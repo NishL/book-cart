@@ -13,6 +13,10 @@ class Cart < ApplicationRecord
     end
     current_item                                              # Return the current item.
   end
+
+  def total_price
+    line_items.to_a.sum { |item| item.total_price}  
+  end
 end
 
 # `has_many()` should be self explanatory: a cart potentially has many
