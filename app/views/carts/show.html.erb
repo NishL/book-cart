@@ -16,13 +16,6 @@
   </tr>
 </table>
 
-
-<ul>
-  <% @cart.line_items.each do |item| %>
-    <li><%= item.quantity %> &times; <%= item.product.title %></li>
-  <% end %>
-</ul>
-
 <%= button_to 'Empty Cart', @cart, method: :delete, data: {confirm: 'Are you sure?'}%>
 
 <%= link_to 'Edit', edit_cart_path(@cart) %> |
