@@ -24,6 +24,8 @@ class Product < ApplicationRecord
     message: 'must be a URL for GIF, JPG or PNG image.'
   }
 
+  validates :image_url, uniqueness: true
+
   private
 
   # Ensure that there are no line items referencing this product.
