@@ -58,9 +58,9 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1.json
   def destroy
     @line_item.destroy
-    current_cart = session[:cart_id]
+    current_cart = session[:cart_id] # This can be use in place of @line_item.cart_id - TODO: figure out pros/cons of each
     respond_to do |format|
-      format.html { redirect_to cart_path(current_cart), notice: 'Line item was successfully destroyed.' }
+      format.html { redirect_to cart_path(@line_item.cart_id), notice: 'Line item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
