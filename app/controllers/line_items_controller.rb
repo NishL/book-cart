@@ -60,7 +60,9 @@ class LineItemsController < ApplicationController
     @line_item.destroy
     current_cart = session[:cart_id] # This can be use in place of @line_item.cart_id - TODO: figure out pros/cons of each
     respond_to do |format|
-      format.html { redirect_to cart_path(@line_item.cart_id), notice: 'Line item was successfully destroyed.' }
+      format.html { redirect_to cart_url(@line_item.cart_id), notice: 'Line item was successfully destroyed.' }
+      # NOTE: If I want to redirect to the store_index_url then I would use the following (there is a note about the test in the test fil):
+      # format.html { redirect_to store_index_url, notice: 'Line item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -49,5 +49,7 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to cart_url
+    # NOTE: If I'm redirecting to the store_index_url after removing a line_item, then I would use the following test instead:
+    # `assert_redirected_to store_index_url`
   end
 end
