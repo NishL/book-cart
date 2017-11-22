@@ -16,7 +16,9 @@
     <div id="columns">
       <div id="side">
         <div id="cart">
-          <%= render @cart %> <!--We're invoking the store layout while looking at the index() action.-->
+          <% if @cart %> <!--If @cart is set for any controller then show the cart in the sidebar, without this we would get errors visiting another page where @cart is not set in its controller.-->
+            <%= render @cart %> <!--We're invoking the store layout while looking at the index() action.-->
+          <% end %>
         </div>
         <ul>
           <li><%= link_to 'Home', store_index_path %></li>

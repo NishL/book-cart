@@ -31,7 +31,7 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to @line_item.cart } # remove the flash message, notice: 'Line item was successfully created.' } # Add `.cart` to the method call, the line item object knows how to find the cart object
+        format.html { redirect_to store_index_url } # remove the flash message, notice: 'Line item was successfully created.' } # Add `.cart` to the method call, the line item object knows how to find the cart object
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }
