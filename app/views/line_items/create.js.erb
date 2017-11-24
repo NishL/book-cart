@@ -1,0 +1,7 @@
+// Code for AJAX request from the store index page to add item to cart.
+// The following code tells the browser to replace the content whose element id is cart with that HTML.
+// The jQuery library is aliased to '$', and most usages of jQuery start there.
+// 1) The first call - `$('#cart')` - tells jQuery to find the HTML element that has an id of 'cart'.
+// 2) The html() method (http://api.jquery.com/html/) is called with a first argument of the desired replacement for the contents of this element.
+
+$('#cart').html("<%=j render(@cart) %>");
