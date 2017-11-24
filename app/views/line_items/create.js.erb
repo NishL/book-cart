@@ -3,5 +3,9 @@
 // The jQuery library is aliased to '$', and most usages of jQuery start there.
 // 1) The first call - `$('#cart')` - tells jQuery to find the HTML element that has an id of 'cart'.
 // 2) The html() method (http://api.jquery.com/html/) is called with a first argument of the desired replacement for the contents of this element.
+//    The content is formed by a call to the `render()` method on the @cart object.
+// 3) The output of the method is processed by an `escape_javascript()` helper method, using an alias named `j()`, that converts this Ruby
+//    string into a format acceptable as input to JavaScript.
+// NOTE: This script is executed in the browser. The only parts executed on the server are the parts within the `<%= %>` delimiters.
 
 $('#cart').html("<%=j render(@cart) %>");
