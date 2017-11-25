@@ -9,3 +9,5 @@
 // NOTE: This script is executed in the browser. The only parts executed on the server are the parts within the `<%= %>` delimiters.
 
 $('#cart').html("<%=j render(@cart) %>");
+
+$('#current_item').css({'background-color':'#88ff88'}).animate({'background-color':'#114411'}, 6000);
