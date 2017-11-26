@@ -10,4 +10,6 @@
 
 $('#cart').html("<%=j render(@cart) %>");
 
+// Identify the browser element by passing '#current_item' to the `$` function. Call the `css()` function to set the initial background color.
+// Follow by calling the `animate()` method to transition back to the original color used by our layout over a period of 6000 milliseconds (6 seconds).
 $('#current_item').css({'background-color':'#88ff88'}).animate({'background-color':'#114411'}, 6000);
