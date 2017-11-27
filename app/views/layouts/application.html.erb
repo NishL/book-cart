@@ -15,7 +15,7 @@
     </div>
     <div id="columns">
       <div id="side">
-        <div id="cart">
+        <div id="cart" <% if @cart.line_items.empty? %> style="display: none" <% end %> >
           <% if @cart %> <!--If @cart is set for any controller then show the cart in the sidebar, without this we would get errors visiting another page where @cart is not set in its controller.-->
             <%= render @cart %> <!--We're invoking the store layout while looking at the index() action.-->
           <% end %>
