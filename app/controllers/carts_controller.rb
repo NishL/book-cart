@@ -59,7 +59,7 @@ class CartsController < ApplicationController
     @cart.destroy if @cart.id == session[:cart_id]
     session[:cart_id] = nil
     respond_to do |format|
-      format.html { redirect_to store_index_url, notice: 'Your cart is currently empty' } # Redirect to the store index
+      format.html { redirect_to store_index_url } # Redirect to the store index, we don't need a notice anymore, it's clear to the user when the cart is empty
       format.json { head :no_content }
     end
   end
