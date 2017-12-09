@@ -45,6 +45,13 @@ class ProductsController < ApplicationController
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
 
+        # We'll now use ActionCable to broadcast the entire catalog every time an update is made. We could send only portions
+        # of the catalog, but we already have a view for the catalog, so we'll use it.
+        # We're using the exisitng 'store/index' view, which requires a list of products to be set into the @products instance variable.
+        # We call `render_to_string()` to render the view as a string, passing `layout: false`, because we only want this view & not the
+        # entire page.
+        # Broadcast messages typically consist of Ruby hashes, which are converted to JSON to go across the wire and end up as JavaScript
+        # objects - we use `html` as the hash key.
         @products = Product.all
         ActionCable.server.broadcast 'products', html: render_to_string('store/index', layout: false)
       else

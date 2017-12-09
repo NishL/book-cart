@@ -8,3 +8,6 @@ class ProductsChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 end
+
+# Take note of the channel class name: `ProductsChannel`, and the name of the
+# stream: "products".
