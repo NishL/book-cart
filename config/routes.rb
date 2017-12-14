@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :orders
   resources :line_items
   resources :carts
   root 'store#index', as: 'store_index' # Using `as:` allows the existing tests to continue working. Rails creates `store_index_path` & `store_index_url` accessor methods.
