@@ -8,4 +8,10 @@ class OrderTest < ActiveSupport::TestCase
     order = Order.new(name: '')
     assert order.invalid?
   end
+
+  test "email must not be blank" do
+    order = Order.new(email: '')
+    assert order.invalid?
+  end
+
 end

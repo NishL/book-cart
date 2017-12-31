@@ -28,14 +28,18 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
+    # From private method below
+    @order.add_line_items_from_cart(@cart) # Add all the line_items from a cart to the order.
 
     respond_to do |format|
-      if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+      if @order.save                    # Tell the order to save itself to the database, if it does, then do the following.
+        Cart.destroy(session[:cart_id]) # When the order is saved, destroy the cart from the session, it's no longer needed.
+        session[:cart_id] = nil         # Set the session cookie for the cart_id to nil, until another cart is created.
+        format.html { redirect_to store_index_url, notice: 'Thank you for your order.' } # Redirect the user to the store index, let them know that the order was placed.
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        format.json { render json: @order.errors, status: :unprocessable_entity } # If the save fails then we tell the user why on the checkout page.
       end
     end
   end
@@ -83,3 +87,12 @@ class OrdersController < ApplicationController
       params.require(:order).permit(:name, :address, :email, :pay_type)
     end
 end
+
+# WHY ARE THERE TWO @order MODEL OBJECTS (in the `new` and `create` actions)?
+# ANSWER: The `new` action creates an Order object in **memory** simply to give the template code something to work with.
+#         The `create` action create an Order object, filling in attributes from the form fields. This object actually
+#         gets **saved** to the database.
+#         Model objects perform two roles:
+#         1) They map data into and out of the database
+#         2) They're regular objects that hold business date
+#         Model objects only affext the database when you tell them to, typically by calling `save()`.
