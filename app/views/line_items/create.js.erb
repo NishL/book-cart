@@ -1,4 +1,7 @@
 // Hide the notice when an item is added to a cart.
+// When we come to the store for the first time, there's nothing in the flash, so the paragraph with the ID of `notice` isn't
+// display, so there's no tag with an ID of notice. The jQuery call matches no elements, which isn't a problem because the call
+// to `hide()` is only apploed to each matching element.
 $('#notice').hide();
 // Reveal the cart when there is exactly one item in the cart. Reveal the cart before the line_item is highlighted.
 if ($('#cart tr').length == 1) { $('#cart').show('blind', 1000); }
