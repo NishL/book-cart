@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
   has_many :line_items # We have lots of carts, each product may have many line items referencing it
+  has_many :orders, through: :line_items # Declare that there is a relationship between products & orders *through* the line_items relationship. Useful in the atom feed.
 
   before_destroy :ensure_not_referenced_by_any_line_item # Prevent removal of products referenced by line items
 

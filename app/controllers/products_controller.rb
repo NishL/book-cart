@@ -71,6 +71,19 @@ class ProductsController < ApplicationController
     end
   end
 
+  # To make this action work, we need to define a route. This action will respond to HTTP GET requests
+  # and will operate on a "member" of the collection (on an individual product) as opposed to the entire collection
+  # (meaning all products).
+  def who_bought
+    @product = Product.find(params[:id])
+    @latest_order = @product.orders.order(:updated_at).last
+    if stale?(@latest_order)
+      respond_to do |format|
+        format.atom
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
