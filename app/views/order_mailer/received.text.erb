@@ -1,0 +1,11 @@
+Dear <%= @order.name %>
+
+Thank you for your order from my awesome store!
+
+You ordered the following items:
+
+<%= render @order.line_items %>
+
+We'll send you another email when your order ships.
+
+<%= @greeting %>, find me in app/views/order_mailer/received.text.erb

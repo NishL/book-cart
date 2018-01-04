@@ -29,6 +29,27 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
+  # Don't actually send emails
+  # Alternatives to :test are :sendmail and :smtp
+  config.action_mailer.delivery_method = :test # Mail won't be delivered. Intead messages will be appended to an array (Accessible via the ActionMailer::Base.deliveries attribute), this is the deafult in the test.rb environmentfile.
+  # Always restart your app when you make a configuration change.
+  #
+  # In production you will want to use :smtp as mainy operating systems may not have a sendmail utility installed where you need it.
+  # In this case, you need to tell ActionMailer where to find the SMTP server to handle your outgoing emails.
+  #
+  # Here are the typical settings you would use for Gmail:
+  # config.action_mailer.delivery_method = :smtp
+  #
+  # config.action_mailer.smtp_settings = {
+  #   address: "smtp.gmail.com",
+  #   port: 587,
+  #   domain: "domain.of.sender.net",
+  #   authentication: "plain",
+  #   user_name: "Jim",
+  #   password: "secret",
+  #   enable_starttls_auto: true
+  # }
+
   config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.

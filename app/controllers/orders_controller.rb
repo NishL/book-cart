@@ -28,13 +28,14 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-    # From private method below
+
     @order.add_line_items_from_cart(@cart) # Add all the line_items from a cart to the order.
 
     respond_to do |format|
       if @order.save                    # Tell the order to save itself to the database, if it does, then do the following.
         Cart.destroy(session[:cart_id]) # When the order is saved, destroy the cart from the session, it's no longer needed.
         session[:cart_id] = nil         # Set the session cookie for the cart_id to nil, until another cart is created.
+        OrderMailer.received(@order).deliver_later
         format.html { redirect_to store_index_url, notice: 'Thank you for your order.' } # Redirect the user to the store index, let them know that the order was placed.
         format.json { render :show, status: :created, location: @order }
       else
