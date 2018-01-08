@@ -2,11 +2,14 @@ require 'test_helper'
 
 class UserStoriesTest < ActionDispatch::IntegrationTest
 fixtures :products # We're testing the purchase of a product, so we only need to load the products fixture.
+                   # If we leave out this line then all of the fixtures are loaded, that can slow down your tests
+                   # if they aren't needed.
 
   # test "the truth" do
   #   assert true
   # end
 
+  # Here is the user story:
   # 1) A user goes to the store index page.
   # 2) User selects a product, adding it to his/her cart.
   # 3) User checks out, filling in details in the checkout form.
@@ -25,6 +28,8 @@ fixtures :products # We're testing the purchase of a product, so we only need to
 
     # Now let's attack the user story.
     # 1) User goes to the store index page
+    # This is different from a functional test where only one controller is checked.
+    # An integration test is all over the place, so we pass a full (relative) URL for and the action to be invoked.
     get "/"
     assert_response :success
     assert_select 'h1', 'Your Catalog'
@@ -42,6 +47,18 @@ fixtures :products # We're testing the purchase of a product, so we only need to
     # 3) User checks out
     get '/orders/new'
     assert_response :success
-    assert_select 'legend', "Please Enter Your details"
+    assert_select 'legend', "Please Enter Your Details"
+
+    # 4) User submits order, they receive an email
+    post '/orders/', params: {
+      order: {
+        name: "Dave Thomas",
+        address: "123 The Street",
+        email: "dave@example.com",
+        pay_type: "Cheque"
+      }
+    }
+
+    follow_redirect!
   end
 end
