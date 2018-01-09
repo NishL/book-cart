@@ -1,0 +1,10 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# Updated to fixture to ensure there are no duplicate names.
+
+one:
+  name: James
+  password_digest: <%= BCrypt::Password.create('secret') %>
+
+two:
+  name: Woods
+  password_digest: <%= BCrypt::Password.create('secret') %>
