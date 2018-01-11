@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
   def index
     @total_orders = Order.count
-    user_name = User.find_by(params[:name])
-    @user = user_name.name
+    user = User.find_by(params[:name])
+    @user_name = user.name
   end
 end
