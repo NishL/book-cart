@@ -1,2 +1,46 @@
-<h1>Session#new</h1>
-<p>Find me in app/views/session/new.html.erb</p>
+<div class="depot_form">
+  <% if flash[:alert] %>
+    <p id="notice"><%= flash[:alert] %></p>
+  <% end %>
+
+  <% form_tag do %>
+    <fieldset>
+      <legend>Please Log In</legend>
+
+      <div>
+        <%= label_tag :name, 'Name:' %>
+        <%= text_field_tag :name, params[:name] %>
+      </div>
+
+      <div>
+        <%= label_tag :password, 'Password:' %>
+        <%= password_field_tag :name, params[:name] %>
+      </div>
+
+      <div>
+        <%= submit_tag 'Login' %>
+      </div>
+    </fieldset>
+  <% end %>
+</div>
+
+<!--
+This form is different from the ones used eariler in the app.
+**This form is not directly associated with a model object.**
+
+1) Rather than using form_for() is uses form_tag(), which builds a regular HTML
+   <form>.
+
+2) Inside of the form we use label_tag() to create HTML <label>, this helper accepts
+   two parameters:
+     - the first is the name of the field
+     - the second is the label that is displayed to the end user.
+
+3) The form also uses text_field_tag() & password_field_tag(), which create HTML <input> tags.
+   Each helper takes two parameters:
+     - the first is the name to give the field
+     - the second is the value with which to populate the field
+
+4) This style of form allows us to associate values in the params structure directly with form fields
+   - no model object is required. In this case we're using the `params` object directly in the form.
+   An alternative to this would be setting an instance variable in the controller.
