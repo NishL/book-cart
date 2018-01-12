@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  skip_before_action :authorize, only: [:new, :create] # We nee
   include CurrentCart # Make sure we have access to the cart in the session.
   before_action :set_cart, only: [:new, :create] # Before creating a new order, make sure there's a cart.
   before_action :ensure_cart_isnt_empty, only: :new # Before creating a new order, make sure the cart isn't empty.

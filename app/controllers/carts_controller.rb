@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  skip_before_action :authorize, only: [:create, :update, :show, :destroy] # We need to allow users to create, update and empty carts without authentication
   before_action :set_cart, only: [:show, :edit, :update, :destroy] # NOTE: before calling the actions in the array call set_cart
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
 

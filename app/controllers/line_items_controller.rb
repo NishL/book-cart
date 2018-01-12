@@ -1,4 +1,5 @@
 class LineItemsController < ApplicationController
+  skip_before_action :authorize, only: [:create, :destroy] # We need to allow app users to add items to their cart without authentication. May have to add :destroy
   include CurrentCart # Include current_cart from concerns and use priveate seet_cart()
   before_action :set_cart, only: [:create] # Invoke set_cart() before calling the create() action
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]

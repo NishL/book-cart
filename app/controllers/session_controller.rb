@@ -1,4 +1,5 @@
 class SessionController < ApplicationController
+  skip_before_action :authorize # We need a user to be able to visi the login page to authenticate.
   def new
   end
 
