@@ -1,5 +1,5 @@
 #encoding: utf-8
-I18n.defualt_locale = :en
+I18n.default_locale = :en
 
 LANGUAGES = [
   ['English', 'en'],
@@ -12,4 +12,4 @@ LANGUAGES = [
 #    We don't have a keyboard that can input a tilde above the 'n' in Espanol,
 #    So we call html_safe on the string so that Rails knows the string is safe
 #    to be interpreted as containing HTML, otherwise only the markup would be
-#    displayed. 
+#    displayed.
