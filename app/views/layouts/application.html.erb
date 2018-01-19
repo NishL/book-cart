@@ -21,10 +21,11 @@
           <% end %>
         <% end %>
         <ul>
-          <li><%= link_to 'Home', store_index_path %></li>
-          <li><a href="#">Questions</a></li>
-          <li><a href="#">News</a></li>
-          <li><a href="#">Contact</a></li>
+          <!--Text to be translated are done with calls to I18n.translate - aliased to I18n.t or the 't' helper method-->
+          <li><%= link_to t('.home'), store_index_path %></li>
+          <li><a href="#"><%= t('.questions') %></a></li>
+          <li><a href="#"><%= t('.news')%></a></li>
+          <li><a href="#"><%= t ('.contact')%></a></li>
         </ul>
 
         <% if session[:user_id] %>
