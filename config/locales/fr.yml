@@ -1,0 +1,8 @@
+fr:
+  layouts:
+    application:
+      title: "Dépôt de Livres"
+      home: "Accueil"
+      questions: "Des Questions"
+      news: "Infos"
+      contact: "Contact"
