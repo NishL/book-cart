@@ -27,3 +27,8 @@ es:
       questions: "Preguntas"
       news: "Noticias"
       contact: "Contacto"
+
+  store:
+    index:
+      title_html:  "Su Cat&aacute;logo" # Using "_html" means that we're free to use HTML entity names.
+      add_html: "A&ntilde;adir al Carrito"
