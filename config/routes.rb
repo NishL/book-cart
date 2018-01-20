@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   end
 
   resources :users
-  resources :orders
-  resources :line_items
-  resources :carts
+  #resources :orders
+  #resources :line_items
+  #resources :carts
 
   resources :products do
     get :who_bought, on: :member # Try it out: `curl --silent http://localhost:3000/products/3/who_bought.atom`
