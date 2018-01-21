@@ -32,3 +32,19 @@ en:
     index:
       title_html: "Your Catalog"
       add_html: "Add to Cart"
+
+  carts:
+    cart:
+      title: "Your Cart"
+      empty: "Empty Cart"
+      checkout: "Checkout"
+
+  # The following is the standard currency translation that Rails looks for.
+  number:
+    currency:
+      format:
+        unit:      "$"
+        precision: 2
+        separator: "."
+        delimiter: ","
+        format: "%u%n" # "%u" is a placeholder for the unit and "%n" is a placeholder for the number.

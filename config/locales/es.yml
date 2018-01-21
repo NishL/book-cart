@@ -32,3 +32,19 @@ es:
     index:
       title_html:  "Su Cat&aacute;logo" # Using "_html" means that we're free to use HTML entity names.
       add_html: "A&ntilde;adir al Carrito"
+
+
+  carts:
+      cart:
+        title: "Carrito de la Compra"
+        empty: "Vaciar Carrito"
+        checkout: "Comprar"
+
+  number:
+    currency:
+      format:
+        unit:      "$US"
+        precision: 2
+        separator: ","
+        delimiter: "."
+        format: "%n&nbsp;%u" # "%n" is a placeholder for a number, "&nbsp;" is a space character, and "%u" is a placeholder for the unit.

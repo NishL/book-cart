@@ -10,7 +10,7 @@
         <%= sanitize(product.description) %><!--`sanitize` allows us to safely add HTML styling-->
         <div class="price_line">
           <span class="price"><%= number_to_currency(product.price) %></span>
-          <%= button_to t('.add_html'), line_items_path(product_id: product), remote: true %><!--Send an AJAX request using remote: true-->
+          <%= button_to t('.add_html'), line_items_path(product_id: product, locale: I18n.locale), remote: true %><!--Send an AJAX request using remote: true--><!--If we don't pass the locale to the remote call the cart will render in English-->
         </div>
       </div>
     <% end %>
