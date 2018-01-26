@@ -22,7 +22,7 @@
         <% end %>
         <ul>
           <!--Text to be translated are done with calls to I18n.translate - aliased to I18n.t or the 't' helper method-->
-          <li><%= link_to t('.home'), store_index_path %></li>
+          <li><%= link_to t('.home'), store_index_path(locale: I18n.locale) %></li>
           <li><a href="#"><%= t('.questions') %></a></li>
           <li><a href="#"><%= t('.news')%></a></li>
           <li><a href="#"><%= t ('.contact')%></a></li>
