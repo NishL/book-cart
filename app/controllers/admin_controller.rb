@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
   def index
     @total_orders = Order.count
-    user = User.find_by(params[:name]) # This may be vulnerable to SQL injection
+    user = User.find(session[:user_id]) # No longer vulnerable to SQL injection, because we find the user from the session object.
     @user_name = user.name
   end
 end
