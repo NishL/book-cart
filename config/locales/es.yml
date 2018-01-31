@@ -48,3 +48,37 @@ es:
         separator: ","
         delimiter: "."
         format: "%n&nbsp;%u" # "%n" is a placeholder for a number, "&nbsp;" is a space character, and "%u" is a placeholder for the unit.
+
+  orders:
+    new:
+      legend: "Por favor, introduca sus datos"
+    form:
+      name: "Nombre"
+      address_html: "Direcci&oacute;n"
+      email: "E-mail"
+      pay_type: "Forma de pago"
+      pay_prompt_html: "Seleccione un m&eacute;todo de pago"
+      submit: "Realizar Pedido"
+
+  activerecord:
+    models:
+      order: "pedido"
+      attributes:
+        order:
+          address: "Direcci&oacute;n"
+          name: "Nombre"
+          email: "E-mail"
+          pay_type: "Forma de pago"
+
+    errors:
+      messages:
+        inclusion: "no est&aacute; incluido en la lista"
+        blank:     "no puede quedar en blanco"
+  errors:
+    template:
+      body:        "Hay problemas con los siguientes campos:"
+      header:
+        one:       "1 error ha impedido que este %{model} se guarde" # When there's one error.
+        other:     "%{count} errores han impedido que este %{model} se guarde" # When there's more than one error.
+
+  thanks: "Gracias por su pedido"

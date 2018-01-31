@@ -48,3 +48,16 @@ en:
         separator: "."
         delimiter: ","
         format: "%u%n" # "%u" is a placeholder for the unit and "%n" is a placeholder for the number.
+
+  orders:
+    new:
+      legend: "Please enter your details"
+    form:
+      name: "Name"
+      address_html: "Address"
+      email: "E-mail"
+      pay_type: "Pay with"
+      pay_prompt_html: "Select a payment method"
+      submit: "Place Order"
+
+  thanks: "Thanks for your order"

@@ -51,7 +51,7 @@ class UserStoriesTest < ActionDispatch::IntegrationTest
     # 3) User checks out
     get '/orders/new'
     assert_response :success
-    assert_select 'legend', "Please Enter Your Details"
+    assert_select 'legend', "Please enter your details"
 
     # 4) User submits order, they receive an email
     # POST the for data to the save order action and verify the redirect.
