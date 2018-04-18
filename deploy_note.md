@@ -15,3 +15,35 @@
 7. The file may, by default only allow readonly access, so, to edit the file used `sudo`, example: `sudo vim /etc/apache2/apache2.conf`.
 8. Run the installer again and it will make sure you've done everything correctly.
 
+
+## Deploying Locally
+
+The previous step is only done once per server. This next step is done once per application.
+
+1. Create file in `/etc/apache2/sites-available/` called bookcart.conf (/etc/apache2/sites-available/bookcart.conf) with the following:
+
+```
+# Virtual Host for book-cart app
+<VirtualHost *:80>
+  ServerName local.bookcart.com
+  DocumentRoot /home/test/Projects/rails/book-cart/public
+  SetEnv SECRET_KEY_BASE "asdfasdf5654asdf5asdf5a56f4etc"
+  <Directory ~/Projects/rails/book-cart/public/>
+    AllowOverride all
+    Options -MultiViews
+    Require all granted
+  </Directory>
+</VirtualHost>
+```
+You can run bin/rails secret to generate a key, and of course it should not be checked into source control.
+
+2. Enable the site with the following command: `sudo a2ensite bookart`.
+
+3. Then run: `sudo service apache2 reload`, followed by `sudo apachectl restart`.
+
+4. Next the client needs to be configured so that it maps the hostname chosen to the correct machine. This is done is a file named `/etc/hosts`.
+   Add the following line: `127.0.0.1 local.bookcart.com`.
+
+That should be it!
+
+
